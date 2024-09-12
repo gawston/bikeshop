@@ -5,10 +5,10 @@
     {{-- <h1>@{ helloMessage }</h1> --}}
     <div class="row">
         <div class="col-md-3">
-            <h1 class="pull-left">สินค้าในร้าน</h1>
+            <h2 class="pull-left">สินค้าในร้าน</h2>
         </div>
         <div class="col-md-9">
-            <div class="pull-right" style="margin-top:10px">
+            <div class="pull-right" style="margin-top:20px">
                 <input type="text" class="form-control" ng-model="query" ng-keyup="searchProduct($event)" style="width:190px" placeholder="พิมพ์ชื่อสินค้าเพื่อค้นหา">
             </div>
         </div>
