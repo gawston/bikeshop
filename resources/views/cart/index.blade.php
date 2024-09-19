@@ -28,7 +28,7 @@
                             <td><img src="{{ asset($c['image_url']) }}" height="36"></td>
                             <td>{{ $c['code'] }}</td>
                             <td>{{ $c['name'] }}</td>
-                            <td><input style="width: 50px; text-align:center;" type="text" class="form-control" value="{{ $c['qty'] }}" onKeyUp="updateCart({{$c['id']}}, this)"></td>
+                            <td><input style="width: 70px; text-align:center;" type="number" class="form-control" value="{{ $c['qty'] }}" onChange="updateCart({{$c['id']}}, this)"></td>
                             <td>{{ number_format($c['price'], 0) }}</td>
                             <td>
                                 <a href="{{ URL::to('cart/delete/'.$c['id']) }}" class="btn btn-danger">
