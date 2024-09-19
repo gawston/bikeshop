@@ -17,7 +17,7 @@
                         <th>รูปสินค้า </th>
                         <th>รหัส</th>
                         <th>ชื่อสินค้า </th>
-                        <th>จํานวน</th>
+                        <th style="text-align: center">จํานวน</th>
                         <th>ราคา</th>
                         <th width="50px"></th>
                     </tr>
@@ -28,7 +28,7 @@
                             <td><img src="{{ asset($c['image_url']) }}" height="36"></td>
                             <td>{{ $c['code'] }}</td>
                             <td>{{ $c['name'] }}</td>
-                            <td><input style="width: 70px; text-align:center;" type="number" class="form-control" value="{{ $c['qty'] }}" onChange="updateCart({{$c['id']}}, this)"></td>
+                            <td align="center"><input style="width: 70px; text-align:center;" type="number" class="form-control" value="{{ $c['qty'] }}" onChange="updateCart({{$c['id']}}, this)"></td>
                             <td>{{ number_format($c['price'], 0) }}</td>
                             <td>
                                 <a href="{{ URL::to('cart/delete/'.$c['id']) }}" class="btn btn-danger">
@@ -42,7 +42,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="3">รวม</th>
-                        <th style="margin-left: 5px">{{ number_format($sum_qty, 0) }}</th>
+                        <th style="text-align: center">{{ number_format($sum_qty, 0) }}</th>
                         <th>{{ number_format($sum_price, 0) }}</th>
                         <th></th>
                     </tr>
