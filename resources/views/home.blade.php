@@ -1,8 +1,26 @@
-@extends("layouts.master")
-@section('title') BikeShop | อุปกรณ์จักรยาน, อะไหล่, ชุดแข่ง และอุปกรณ์ตกแต่ง @endsection
+@extends('layouts.master')
 @section('content')
+{{-- หลังจาก php artisan ui vue อย่าลืมใส่ ng-app, ng-controller --}}
 <div class="container" ng-app="app" ng-controller="ctrl">
-    {{-- <h1>@{ helloMessage }</h1> --}}
+    {{-- auth --}}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                {{-- <div class="card-header">{{ __('Dashboard') }}</div> --}}
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{-- {{ __('You are logged in!') }} --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- content --}}
     <div class="row">
         <div class="col-md-3">
             <h2 class="pull-left">สินค้าในร้าน</h2>
@@ -32,7 +50,10 @@
                                 <div>คงเหลือ: @{p.stock_qty}</div>
                                 <div>ราคา <strong>@{p.price}</strong> บาท</div>
                             </div>
-                            <a href="#" class="btn btn-success btn-block" ng-click="addToCart(p)"><i class="fa fa-shopping-cart"></i> หยิบใส่ตะกร้า</a>
+                            @guest
+                            @else
+                                <a href="#" class="btn btn-success btn-block" ng-click="addToCart(p)"><i class="fa fa-shopping-cart"></i> หยิบใส่ตะกร้า</a>
+                            @endguest
                         </div>
                     </div>
                     <!-- end product card -->

@@ -12,6 +12,7 @@
     <script src="{{asset('js/jquery-3.7.1.min.js')}}"></script>
     <script src="{{asset('js/angular.min.js')}}"></script>
     <script src="{{asset('vendor/toastr/toastr.min.js')}}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
     <title>@yield('title', 'Bike shop')</title>
 </head>
 <body>
@@ -22,12 +23,17 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ URL::to('home') }}">หน้าแรก</a></li>
-                    <li><a href="{{ URL::to('product')}}">ข้อมูลสินค้า</a></li>
-                    <li><a href="{{ URL::to('category')}}">ข้อมูลรายการสินค้า</a></li>
-                    <li><a href="/">รายงาน</a></li>
+                    {{-- home เห็นทุกคน --}}
+                    <li><a href="{{ URL::to('home') }}">หน้าแรก</a></li> 
+                    @guest
+                        {{-- ไม่มี --}}
+                    @else
+                        <li><a href="{{ URL::to('product')}}">ข้อมูลสินค้า</a></li>
+                        <li><a href="{{ URL::to('category')}}">ข้อมูลรายการสินค้า</a></li>
+                        <li><a href="/">รายงาน</a></li> 
+                    @endguest
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right"> 
                     <li>
                         <a href="{{ URL::to('cart/view')}}">
                             <i class="fa fa-shopping-cart"></i> 
@@ -42,11 +48,28 @@
                             </span>
                         </a>
                     </li>
+                    @guest
+                        <li><a href="{{route('login')}}">เข้าสู่ระบบ</a></li>
+                        <li><a href="{{route('register')}}">ลงทะเบียน</a></li>
+                    @else
+                        <li><a href="#">{{Auth::user()->name}}</a></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                             {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                             @csrf
+                            </form>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </nav>  
     </div>
-    {{-- <h1 style="text-align: center">นายนฤนาท คามวารี 6506021611076</h1> --}}
+    <h1 style="text-align: center">นายนฤนาท คามวารี 6506021611076</h1>
     @yield('content')
     @if(session('msg'))
         @if(session('ok'))
