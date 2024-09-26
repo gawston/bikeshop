@@ -28,9 +28,20 @@
                     <li><a href="/">รายงาน</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ URL::to('cart/view')}}"><i class="fa fa-shopping-cart"></i> ตะกร้า
-                    <span class="label label-danger">
-                    {!! count(Session::get('cart_items')) !!}</span></a></li>
+                    <li>
+                        <a href="{{ URL::to('cart/view')}}">
+                            <i class="fa fa-shopping-cart"></i> 
+                            ตะกร้า
+                            <span class="label label-danger">
+                                {{-- check if not have product in cart --}}
+                                @if (Session::has('cart_items') != '')
+                                    {!! count(Session::get('cart_items')) !!}
+                                @else
+                                    {!! count(array()) !!}
+                                @endif
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>  
