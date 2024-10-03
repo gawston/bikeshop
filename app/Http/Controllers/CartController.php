@@ -67,11 +67,9 @@ class CartController extends Controller {
         foreach($cart_items as $c) {
             $total_amount += $c['price'] * $c['qty'];
         }
-        $html_output = view('cart/complete', compact('cart_items', 'cust_name', 'cust_email', 'po_no',
-        'po_date', 'total_amount'))->render();
-
         $html_output = view('cart/complete', compact('cart_items', 'cust_name', 'cust_email',
         'po_no', 'po_date', 'total_amount'))->render();
+        
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->debug = true;
         $mpdf->WriteHTML($html_output);
