@@ -7,7 +7,7 @@
         <li class="active">สินค้าในตะกร้า</li>
     </div>
     <div class="panel panel-default">
-        @if(count($cart_items))
+        @if($cart_items != '' ? count($cart_items) : '0')
             <?php $sum_price = 0 ?>
             <?php $sum_qty = 0 ?>
 
